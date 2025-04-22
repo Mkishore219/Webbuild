@@ -310,22 +310,33 @@ yrOfExp()
 
 
 function dropdown() {
-
     document.querySelectorAll('.dropdown-header').forEach(header => {
-        header.addEventListener('click', function () {
-            const dropdown = this.parentElement;
-            dropdown.classList.toggle('open');
+        header.addEventListener('click', function() {
+            const currentDropdown = this.parentElement;
+            const allDropdowns = document.querySelectorAll('.dropdown');
+            
+            // Close all other dropdowns
+            allDropdowns.forEach(dropdown => {
+                if (dropdown !== currentDropdown) {
+                    dropdown.classList.remove('open');
+                    const otherPlusMinus = dropdown.querySelector('.plus-minus');
+                    otherPlusMinus.textContent = '+';
+                }
+            });
 
-            const plusMinus = this.querySelector('.plus-minus');
-            plusMinus.textContent = dropdown.classList.contains('open') ? '-' : '+';
+            // Toggle current dropdown
+            currentDropdown.classList.toggle('open');
+            
+            // Update current plus/minus
+            const currentPlusMinus = this.querySelector('.plus-minus');
+            currentPlusMinus.textContent = currentDropdown.classList.contains('open') ? '-' : '+';
         });
     });
-
 }
 dropdown()
 
 
-function page3() {
+function servicesSectionAnimation() {
 
     var tl4 = gsap.timeline({
         scrollTrigger: {
@@ -349,7 +360,7 @@ function page3() {
         stagger: 0.1
     })
 }
-page3()
+servicesSectionAnimation()
 
 function page4() {
     var tl5 = gsap.timeline({
@@ -679,8 +690,3 @@ function currentYear() {
     document.querySelector("#current_year").innerHTML = new Date().getFullYear()
 }
 currentYear()
-
-
-
-
-
