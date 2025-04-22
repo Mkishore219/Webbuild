@@ -475,6 +475,19 @@ section.experience .dropdown.open .plus-minus {
     transform: rotate(45deg);
 }
 
+section.experience .dropdown-content {
+    display: none;
+    padding: 20px 0;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    /* Add animation */
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 
 
 
